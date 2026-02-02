@@ -3,7 +3,7 @@ public class Main {
         
    public static void main(String[] args) {
        
-        cadastroVIEW tela = new cadastroVIEW();
+        cadastroVIEW2 tela = new cadastroVIEW2();
         tela.setVisible(true);
    }
 }
