@@ -1,4 +1,4 @@
-
+import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,7 +18,7 @@ public class listagemVIEW extends javax.swing.JFrame {
      */
     public listagemVIEW() {
         initComponents();
-        listarProdutos();
+        carregarTabela();
     }
 
     /**
@@ -222,4 +222,29 @@ public class listagemVIEW extends javax.swing.JFrame {
         }
     
     }
+    public void carregarTabela() {
+
+    DefaultTableModel modelo =
+            (DefaultTableModel) listaProdutos.getModel();
+
+    // Limpa a tabela antes de carregar
+    modelo.setRowCount(0);
+
+    ProdutosDAO dao = new ProdutosDAO();
+
+    // Preenche a tabela com os produtos do banco
+    for (ProdutosDTO p : dao.listarProdutos()) {
+
+        modelo.addRow(new Object[]{
+            p.getId(),
+            p.getNome(),
+            p.getValor(),
+            p.getStatus()
+        });
+    }
 }
+
+}
+
+
+
