@@ -1,7 +1,7 @@
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-
+import javax.swing.JOptionPane;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -136,12 +136,26 @@ public class listagemVIEW extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-        String id = id_produto_venda.getText();
-        
+       try {
+        // pega o ID digitado no campo
+        int idProduto = Integer.parseInt(id_produto_venda.getText());
+
+        // chama o DAO
         ProdutosDAO produtosdao = new ProdutosDAO();
-        
-        //produtosdao.venderProduto(Integer.parseInt(id));
+        produtosdao.venderProduto(idProduto);
+
+        // mensagem de confirmação
+        JOptionPane.showMessageDialog(null, "Produto vendido com sucesso!");
+
+        // atualiza a tabela
         listarProdutos();
+
+        // limpa o campo
+        id_produto_venda.setText("");
+
+    } catch (Exception erro) {
+        JOptionPane.showMessageDialog(null, "Digite um ID válido!");
+    }
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
